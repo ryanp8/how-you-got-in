@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Post {
+  id               String  @id @default(uuid())
+  school           String
+  highSchool       String?
+  satScore         Int?
+  actScore         Int?
+  weightedGpa      Float?
+  extracurriculars String
+  apScores         String?
+  comment          String?
+  verified         Boolean
+}
+
+model AdminUser {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+}
