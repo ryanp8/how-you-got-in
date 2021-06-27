@@ -17,6 +17,10 @@ export default async function Login(req: NextApiRequest, res: NextApiResponse) {
         }
     });
 
+    if (!user) {
+        return res.status(401).json({message: "user doesn't exist"});
+    }
+
     const match = await bcrypt.compare(password, user.password);
     if (match) {
         const token = await jwt.sign({ username }, process.env.TOKEN_SECRET as string, { expiresIn: 15 });

@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from "../../prisma/clientConnection";
+import {} from "@prisma/client"
 
 
 export default async function getVerifiedPosts(req: NextApiRequest, res: NextApiResponse) {
@@ -30,7 +31,7 @@ export default async function getVerifiedPosts(req: NextApiRequest, res: NextApi
                 },
                 verified: true
             },
-            orderBy: orders,
+            orderBy: orders as any,
             take: 20,
             skip: page ? parseInt(page as string) * 20 : 0
         });
