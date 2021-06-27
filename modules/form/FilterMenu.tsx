@@ -14,7 +14,7 @@ export const FilterMenu: React.FC = () => {
         formState: {
             errors
         }
-    } = useForm<PostFetchOptions>();
+    } = useForm();
 
     const onSubmit = (data: PostFetchOptions) => {
         state.setActFilter(data.actFilter);
